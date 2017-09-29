@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+import os
+import uuid
 
 app = Flask(__name__)
 
@@ -16,7 +18,7 @@ def estimate():
         f_name = str(uuid.uuid4()) + extension
         return jsonify({'filename': f_name})
     except Exception as err:
-        return jsonify({'error': "Error loading file"})
+        return jsonify({'error': str(err)})
         
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=80)
