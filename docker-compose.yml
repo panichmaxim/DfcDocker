@@ -3,3 +3,4 @@ api:
   build: ./api
   ports:
     - 80:80
+    - 8000:8000
