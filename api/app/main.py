@@ -6,15 +6,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello World from Flask"
+    return "Cool landing"
     
 @app.route('/estimate', methods=['POST'])
-def upload():
+def estimate():
     try:
-        imagefile = flask.request.files.get('image', '')
-        return jsonify({'estimate': imagefile})
+        file = request.files['image']
+        extension = os.path.splitext(file.filename)[1]
+        f_name = str(uuid.uuid4()) + extension
+        return jsonify({'filename': f_name})
     except Exception as err:
         return jsonify({'error': "Error loading file"})
-    
+        
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=80)
+    app.run(host='0.0.0.0', debug=False, port=80)
