@@ -29,7 +29,7 @@ def price():
     data = [address]
     response = requests.post("https://dadata.ru/api/v2/clean/address", headers=headers, data=json.dumps(data))
     data = json.loads(response.content)
-    return jsonify(data)
+    return jsonify({'flat_price': data[0]['flat_price']})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False, port=80)
