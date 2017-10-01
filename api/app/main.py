@@ -21,7 +21,7 @@ def estimate():
         return jsonify({'error': str(err)})
 
 @app.route('/price', methods=['GET'])
-def estimate():
+def price():
     address = request.args.get("address")
     return jsonify({'flat_price': "6854710"})
 
